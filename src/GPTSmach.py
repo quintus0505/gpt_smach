@@ -31,9 +31,9 @@ Available_Letter = ['X', 'F', 'Q', 'R']
 TEST_LETTER = "R"  # Used for TEST_WRITING
 WRITTING_REPEAT_TIMES = 1   # Repeat times for writing the same letter
 CONVERSATION_TIME = 60     # set the conversation time
-ADDITIONAL_WRITING_TIME = 180  # set the additional writing time
+ADDITIONAL_WRITING_TIME = 120  # set the additional writing time
 
-User_name = 'Alex'
+User_name = 'Giada'
 
 class Greeting(smach.State):
     def __init__(self):
@@ -64,7 +64,7 @@ class Greeting(smach.State):
                         userdata.logger.log_conversation(end_time, "Human", recognize_result.transcript)
                         print("recognize_result: ", recognize_result)
                         print("api_time: ", api_time, "input token num: ", len(recognize_result.transcript))
-                        userdata.GPTBot.google_speech_data.append((api_time, len(recognize_result.transcript)))
+                        # userdata.GPTBot.google_speech_data.append((api_time, len(recognize_result.transcript)))
                         break
                     else:
                         print("recognize_result is None")                        
@@ -218,7 +218,7 @@ class AdditionalWritingStart(smach.State):
                     if recognize_result:
                         print("recognize_result: ", recognize_result)
                         print("api_time: ", api_time, "input token num: ", len(recognize_result.transcript))
-                        userdata.GPTBot.google_speech_data.append((api_time, len(recognize_result.transcript)))
+                        # userdata.GPTBot.google_speech_data.append((api_time, len(recognize_result.transcript)))
                         userdata.logger.log_conversation(end_time, "Human", recognize_result.transcript)
                     else:
                         print("recognize_result is None")                        
@@ -348,7 +348,7 @@ class AdditionalWritingEnd(smach.State):
                             if recognize_result:
                                 print("recognize_result: ", recognize_result)
                                 print("api_time: ", api_time, "input token num: ", len(recognize_result.transcript))
-                                userdata.GPTBot.google_speech_data.append((api_time, len(recognize_result.transcript)))
+                                # userdata.GPTBot.google_speech_data.append((api_time, len(recognize_result.transcript)))
                                 userdata.logger.log_conversation(end_time, "Human", recognize_result.transcript)
                                 break
                             else:
@@ -409,7 +409,7 @@ class Goodbye(smach.State):
         rospy.loginfo("Executing state Goodbye")
         goodbye_start_time = time.time()
         userdata.logger.log_state_time("Goodbye", goodbye_start_time)
-        userdata.WritingControl.writing_end_arm()
+        # userdata.WritingControl.writing_end_arm()
         if not TEST_WRITING:
             prompt = "Now we are at the goodbye stage. We are using the google speech to text api to recognize the name of the people you are talking to, the result is" + userdata.Get_Name_Result + "If you get name, you should express your thanks\
             to the person you are talking to, if you cannot get the name, you can just say 'my friend' instead of the name. Please act like you are talking to a person rather than acting based on the command and express your thanks to the person you are talking to. and conclude today you taugh letters" + \
