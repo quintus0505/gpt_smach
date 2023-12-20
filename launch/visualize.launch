@@ -1,0 +1,3 @@
+<launch>
+  <node name="visualize" pkg="gpt_smach" type="visualize.py" output="screen"></node>
+</launch>
