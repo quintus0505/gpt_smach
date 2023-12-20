@@ -13,10 +13,13 @@ from std_msgs.msg import Bool, Int32
 import threading
 from writing_control import PEN_RISE, TABLE_HEIGH
 import numpy as np
+import os
 # import moveit_msgs.msg
 # import geometry_msgs.msg
 # from std_msgs.msg import String
 # from moveit_commander.conversions import pose_to_list
+
+SAVE_SCREEN = True  # Set this to True to save the screen as an image
 
 # Colors
 BLACK = (0, 0, 0)
@@ -101,6 +104,8 @@ class Visualize:
             print("Received signal to finish drawing")
             self.running = False
             self.writing = False
+            if SAVE_SCREEN:
+                self.save_current_screen()
         elif msg.data==2:
             print("Received signal pen up")
             self.pen_up = True
@@ -173,6 +178,13 @@ class Visualize:
             pygame.quit()
             sys.exit()
 
+    def save_current_screen(self):
+        # save the fig under ../fig/
+        if not os.path.exists("../fig/"):
+            os.makedirs("../fig/")
+        # save the fig based on current time
+        pygame.image.save(self.screen, "../fig/fig_" + str(time.time()) + ".jpg")  
+        print("Saved the current screen as" + "../fig/fig_" + str(time.time()) + ".jpg")
 
 
     def start_drawing_callback(self, msg):
