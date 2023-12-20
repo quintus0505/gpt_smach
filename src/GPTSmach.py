@@ -24,7 +24,7 @@ from datetime import datetime
 import sys
 from logger import Logger
 
-TEST_WRITING = True  # Flag to just test the writing part, no interaction with the child
+TEST_WRITING = False  # Flag to just test the writing part, no interaction with the child
 TEST_CONVERSATION = False  # Flag to just test the conversation part, skip the writing part
 # Available_Letter = ['F', 'X', 'H', 'Q', 'S', 'R']
 Available_Letter = ['X', 'F', 'Q', 'R']

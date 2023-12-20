@@ -10,3 +10,6 @@ __pycache__
 .idea/
 config/
 data/
+fig/
+.pyc
+src/__pycache__/

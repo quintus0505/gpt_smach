@@ -179,12 +179,19 @@ class Visualize:
             sys.exit()
 
     def save_current_screen(self):
-        # save the fig under ../fig/
-        if not os.path.exists("../fig/"):
-            os.makedirs("../fig/")
+        # save the fig under ../fig/ of current_dir
+        current_dir = os.path.dirname(os.path.realpath(__file__))
+        # fig dir should be under the father dir of current_dir
+        fig_dir = os.path.join(current_dir, "../fig/")
+        if not os.path.exists(fig_dir):
+            os.makedirs(fig_dir)
         # save the fig based on current time
-        pygame.image.save(self.screen, "../fig/fig_" + str(time.time()) + ".jpg")  
-        print("Saved the current screen as" + "../fig/fig_" + str(time.time()) + ".jpg")
+        fig_name = time.strftime("%Y%m%d-%H%M%S") + ".png"
+        fig_path = os.path.join(fig_dir, fig_name)
+        # save the igure rotated by 180 degree
+        pygame.image.save(pygame.transform.rotate(self.screen, 180), fig_path)
+        print("Saved the screen as {}".format(fig_path))
+
 
 
     def start_drawing_callback(self, msg):
