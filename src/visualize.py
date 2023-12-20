@@ -19,7 +19,7 @@ import os
 # from std_msgs.msg import String
 # from moveit_commander.conversions import pose_to_list
 
-SAVE_SCREEN = True  # Set this to True to save the screen as an image
+SAVE_SCREEN = False  # Set this to True to save the screen as an image
 
 # Colors
 BLACK = (0, 0, 0)
