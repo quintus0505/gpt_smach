@@ -5,6 +5,9 @@ import time
 from datetime import datetime
 
 class Logger:
+    """
+    record the state and conversational log
+    """
     def __init__(self):
         home_dir = os.path.expanduser('~')
         self.state_log_dir = os.path.join(home_dir, "GPTSmach_Log", "state_log")

@@ -1,4 +1,4 @@
-# QTrobot GPT-Demo
+# QTrobot GPT-Smach
 
 ###### Implementing a simple speech-based chatbot with OpenAI and QTrobot
 
@@ -27,6 +27,8 @@ You should link or copy the following package to your src under catkin_ws and ru
 + [QTrobot Audio processing and Microphone](https://docs.luxai.com/docs/modules/microphone)
 + [SMACH Tutorials](https://wiki.ros.org/smach/Tutorials)
 
+Note that you may also see *qt_gspeech_interface* for speech recognition. It could be another solution but is not tested. 
+
 ## Installation 
 Install the required python packages:
 
@@ -41,7 +43,7 @@ Add OpenAI key to gpt_bot.yaml file:
 "OPENAI_KEY":""
 ```
 
-To use OpenAI *gpt-3.5-turbo* model set  `engine: "chatgpt"` or if you want to use *text-davinci-003* set it to `engine: "davinci3"`. Remember do not upload you OPENAI_KEY to the repo.
+To use OpenAI *gpt-3.5-turbo* model set  `engine: "chatgpt"` or if you want to use *text-davinci-003* set it to `engine: "davinci3"`. Remember do not push you OPENAI_KEY to the repo.
 
 ### Character configuration
 

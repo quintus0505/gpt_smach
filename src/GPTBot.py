@@ -70,6 +70,7 @@ class QTChatBot():
         nltk.download('vader_lexicon')
         self.model_engine = rospy.get_param("/gpt_demo/chatengine/engine", 'chatgpt')
         self.log_api_test_data = log_api_test_data
+        # the csv file to save the api test data, currently abandoned
         if self.model_engine == 'chatgpt':
             self.aimodel = aimodel.ChatGPT()
             self.google_speech_to_text_file = "chatgpt_google_speech_data.csv"

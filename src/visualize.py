@@ -20,6 +20,7 @@ import os
 # from moveit_commander.conversions import pose_to_list
 
 SAVE_SCREEN = False  # Set this to True to save the screen as an image
+LETTER_SIZE = 9    # 9 for user testing
 
 # Colors
 BLACK = (0, 0, 0)
@@ -136,20 +137,14 @@ class Visualize:
                     # Calculate the elapsed time
                     elapsed_time = time.time() - self.start_time
 
-                    # Check if 60 seconds have passed
-                    # if elapsed_time >= 60:
-                    #     self.running = False
-                    # if self.finish_signal:
-                    #     self.running = False
                     # Get the current XY position
                     x = self.group.get_current_pose().pose.position.x - self.initial_x
                     y = self.group.get_current_pose().pose.position.y - self.initial_y
                     z = self.group.get_current_pose().pose.position.z
                     # Convert the XY positions from meters to pixel coordinates
-                    # x_pixel = self.width/3 + int(x * 100 * 8) * 4  # Map -1.0 to 1.0 meters to 0 to 800 pixels
-                    # y_pixel = self.hight/2 + int(y * 100 * 6) * 4 # Map -1.0 to 1.0 meters to 600 to 0 pixels
-                    x_pixel = int(x * 100 * 6) * 9  # Map -1.0 to 1.0 meters to 0 to 800 pixels
-                    y_pixel = int(y * 100 * 6) * 9  # Map -1.0 to 1.0 meters to 600 to 0 pixels
+                    x_pixel = int(x * 100 * 6) * LETTER_SIZE  # Map -1.0 to 1.0 meters to 0 to 800 pixels
+                    y_pixel = int(y * 100 * 6) * LETTER_SIZE  # Map -1.0 to 1.0 meters to 600 to 0 pixels
+                    # make the letter in the middle of the screen
                     x_pixel = x_pixel + self.hight * 4/9
                     y_pixel = y_pixel + self.width * 4/9
                     print("coordinate")

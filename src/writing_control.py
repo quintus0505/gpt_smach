@@ -12,8 +12,8 @@ import time
 # from std_msgs.msg import String
 # from moveit_commander.conversions import pose_to_list
 
-TABLE_HEIGH = 0.35
-PEN_RISE = 0.04
+TABLE_HEIGH = 0.35   # used for pen up and pen down and arm prepare
+PEN_RISE = 0.04       # pen up height
 
 
 class Writing_Control():

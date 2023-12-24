@@ -24,16 +24,16 @@ from datetime import datetime
 import sys
 from logger import Logger
 
-TEST_WRITING = False  # Flag to just test the writing part, no interaction with the child
-TEST_CONVERSATION = False  # Flag to just test the conversation part, skip the writing part
-# Available_Letter = ['F', 'X', 'H', 'Q', 'S', 'R']
+TEST_WRITING = False  # Flag to just test the writing part, no interaction with the user
+TEST_CONVERSATION = False  # Flag to just test the conversation part, skip the all the writing part
+# Available_Letter = ['F', 'X', 'H', 'Q', 'R']
 Available_Letter = ['X', 'F', 'Q', 'R']
 TEST_LETTER = "R"  # Used for TEST_WRITING
 WRITTING_REPEAT_TIMES = 1   # Repeat times for writing the same letter
 CONVERSATION_TIME = 60     # set the conversation time
 ADDITIONAL_WRITING_TIME = 120  # set the additional writing time
 
-User_name = 'Giada'
+User_name = 'Oscar'
 
 class Greeting(smach.State):
     def __init__(self):
@@ -78,7 +78,7 @@ class Greeting(smach.State):
             else:
                 userdata.Get_Name_Result = User_name
             prompt = "We are using the google speech to text api to recognize the name of the people you are talking to, the result is" + userdata.Get_Name_Result + "If you get name, you should greet the person again, \
-            if you cannot get the name from the reuslt, you could just use 'my friend' instead of the name. Please act like you are talking to a person rather than acting based on the command and greet the person again by asking what you can do for the person"
+            if you cannot get the name from the reuslt, you could just use 'my friend' instead of the name. Please act like you are talking to a person rather than acting based on the command and greet the person again by 'How are you ...'"
             response =  userdata.GPTBot.aimodel.generate(prompt)
             print("response: ", response)
             userdata.GPTBot.talk(response)
@@ -125,9 +125,9 @@ class Conversation(smach.State):
                     prompt = "The child's latest response is: " + prompt + \
                         "Now you should suggest to teach the child how to write letters, you should first response to the child's latest response started with 'Hmm,' or 'Ah,' and then response with 'Now let us start to write letters'"
                     writing_start_flag = True
-                else:
-                    prompt = "The child's latest response is: " + prompt + \
-                    "You should answer to the responese, our activity today is to learn how to write letter, but no need to directly move on to the writing part at this moment"
+                # else:
+                #     prompt = "The child's latest response is: " + prompt + \
+                #     "You should answer to the responese, our activity today is to learn how to write letter, but no need to directly move on to the writing part at this moment"
                 response = userdata.GPTBot.aimodel.generate(prompt)
 
                 if not response:
@@ -435,7 +435,7 @@ class GPTSmachManager():
         self.sm.userdata.gpt_bot = QTChatBot()  # Initialize the GPTBot instance
         self.sm.userdata.get_name_result = ''
         self.sm.userdata.writing_control = Writing_Control()
-        self.sm.userdata.writing_flag = 2
+        self.sm.userdata.writing_flag = 2   # Not using this flag for now
         self.sm.userdata.target_letter = None
         self.sm.userdata.writting_loop_end = False
         self.sm.userdata.teaching_times = 0
