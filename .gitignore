@@ -8,7 +8,7 @@ service.json
 *.log
 __pycache__
 .idea/
-config/
+# config/
 data/
 fig/
 .pyc
